@@ -1,0 +1,66 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="IWT_OCR.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="DB_File" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\\\192.168.1.51\IWT_SHARE\DB\IWT_SHARE.db3</Value>
+    </Setting>
+    <Setting Name="Local_DB" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\IWT_OCR\DB\IWT_DB.db3</Value>
+    </Setting>
+    <Setting Name="scanPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\IWT_OCR\SCAN\</Value>
+    </Setting>
+    <Setting Name="trayPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\IWT_OCR\TRAY\</Value>
+    </Setting>
+    <Setting Name="ngPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\IWT_OCR\OCRERROR\</Value>
+    </Setting>
+    <Setting Name="dataPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\IWT_OCR\DATA\</Value>
+    </Setting>
+    <Setting Name="wrNgPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\WinReaderPForm\error\</Value>
+    </Setting>
+    <Setting Name="wrHands_Path" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\WinReaderPForm\</Value>
+    </Setting>
+    <Setting Name="wrHands_Prg" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">pFormMain.exe</Value>
+    </Setting>
+    <Setting Name="jobName_Nouhinsho" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">納品書</Value>
+    </Setting>
+    <Setting Name="jobName_Nouhinkariden" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">納品仮伝票0717</Value>
+    </Setting>
+    <Setting Name="jobName_Genpinhyo" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">現品票</Value>
+    </Setting>
+    <Setting Name="wrReaderOutFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">txtout.csv</Value>
+    </Setting>
+    <Setting Name="現品票パス" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\IWT_OCR\GENPIN\</Value>
+    </Setting>
+    <Setting Name="納品仮伝票パス" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\IWT_OCR\NOUHINKARI\</Value>
+    </Setting>
+    <Setting Name="納品書パス" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\IWT_OCR\NOUHIN\</Value>
+    </Setting>
+    <Setting Name="商品マスタ" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\\192.168.1.51\IWT_SHARE\MST\商品マスタ一覧表.csv</Value>
+    </Setting>
+    <Setting Name="仕入先マスタ" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\\192.168.1.51\IWT_SHARE\MST\仕入先一覧表.csv</Value>
+    </Setting>
+    <Setting Name="HoldTifPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">c:\IWT_OCR\Hold_Tiff\</Value>
+    </Setting>
+    <Setting Name="recPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\IWT_OCR\RECOVERY\</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
