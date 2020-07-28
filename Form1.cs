@@ -61,6 +61,9 @@ namespace IWT_OCR
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // キャプションにバージョンを追加
+            this.Text += "   ver " + Application.ProductVersion;
+
             Utility.WindowsMaxSize(this, this.Width, this.Height);
             //Utility.WindowsMinSize(this, this.Width, this.Height);
 

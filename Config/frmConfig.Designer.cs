@@ -42,18 +42,18 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.txtLogSpan = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.txtShiiresaki = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtTorihikisaki = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
-            this.txtHin = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.button7 = new System.Windows.Forms.Button();
             this.txtBumon = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
+            this.txtHin = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button7 = new System.Windows.Forms.Button();
+            this.txtTorihikisaki = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.button6 = new System.Windows.Forms.Button();
+            this.txtShiiresaki = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -101,7 +101,7 @@
             this.groupBox2.Size = new System.Drawing.Size(554, 70);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "【受注ＣＳＶデータ出力先】";
+            this.groupBox2.Text = "【売上原価Proデータ出力先】";
             // 
             // button5
             // 
@@ -136,7 +136,7 @@
             this.groupBox3.Size = new System.Drawing.Size(272, 64);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "【ＦＡＸ画像保存月数】";
+            this.groupBox3.Text = "【画像保存月数】";
             // 
             // txtDataSpan
             // 
@@ -237,71 +237,38 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "【マスターCSV】";
             // 
-            // txtShiiresaki
+            // txtBumon
             // 
-            this.txtShiiresaki.Font = new System.Drawing.Font("ＭＳ ゴシック", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtShiiresaki.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.txtShiiresaki.Location = new System.Drawing.Point(64, 25);
-            this.txtShiiresaki.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtShiiresaki.Name = "txtShiiresaki";
-            this.txtShiiresaki.Size = new System.Drawing.Size(419, 21);
-            this.txtShiiresaki.TabIndex = 1;
-            this.txtShiiresaki.TabStop = false;
+            this.txtBumon.Font = new System.Drawing.Font("ＭＳ ゴシック", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtBumon.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.txtBumon.Location = new System.Drawing.Point(64, 126);
+            this.txtBumon.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtBumon.Name = "txtBumon";
+            this.txtBumon.Size = new System.Drawing.Size(419, 21);
+            this.txtBumon.TabIndex = 10;
+            this.txtBumon.TabStop = false;
             // 
-            // button4
+            // label4
             // 
-            this.button4.BackColor = System.Drawing.SystemColors.Control;
-            this.button4.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button4.Location = new System.Drawing.Point(488, 23);
-            this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(60, 27);
-            this.button4.TabIndex = 0;
-            this.button4.Text = "参照...";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(26, 131);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(41, 12);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "部門：";
             // 
-            // label1
+            // button8
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 12);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "仕入先：";
-            // 
-            // txtTorihikisaki
-            // 
-            this.txtTorihikisaki.Font = new System.Drawing.Font("ＭＳ ゴシック", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtTorihikisaki.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.txtTorihikisaki.Location = new System.Drawing.Point(64, 60);
-            this.txtTorihikisaki.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtTorihikisaki.Name = "txtTorihikisaki";
-            this.txtTorihikisaki.Size = new System.Drawing.Size(419, 21);
-            this.txtTorihikisaki.TabIndex = 4;
-            this.txtTorihikisaki.TabStop = false;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 65);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 12);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "取引先：";
-            // 
-            // button6
-            // 
-            this.button6.BackColor = System.Drawing.SystemColors.Control;
-            this.button6.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button6.Location = new System.Drawing.Point(488, 58);
-            this.button6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(60, 27);
-            this.button6.TabIndex = 1;
-            this.button6.Text = "参照...";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.button8.BackColor = System.Drawing.SystemColors.Control;
+            this.button8.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button8.Location = new System.Drawing.Point(488, 124);
+            this.button8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(60, 27);
+            this.button8.TabIndex = 3;
+            this.button8.Text = "参照...";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // txtHin
             // 
@@ -336,38 +303,71 @@
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
-            // txtBumon
+            // txtTorihikisaki
             // 
-            this.txtBumon.Font = new System.Drawing.Font("ＭＳ ゴシック", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtBumon.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.txtBumon.Location = new System.Drawing.Point(64, 126);
-            this.txtBumon.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtBumon.Name = "txtBumon";
-            this.txtBumon.Size = new System.Drawing.Size(419, 21);
-            this.txtBumon.TabIndex = 10;
-            this.txtBumon.TabStop = false;
+            this.txtTorihikisaki.Font = new System.Drawing.Font("ＭＳ ゴシック", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtTorihikisaki.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.txtTorihikisaki.Location = new System.Drawing.Point(64, 60);
+            this.txtTorihikisaki.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtTorihikisaki.Name = "txtTorihikisaki";
+            this.txtTorihikisaki.Size = new System.Drawing.Size(419, 21);
+            this.txtTorihikisaki.TabIndex = 4;
+            this.txtTorihikisaki.TabStop = false;
             // 
-            // label4
+            // label2
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(26, 131);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 12);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "部門：";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(14, 65);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "取引先：";
             // 
-            // button8
+            // button6
             // 
-            this.button8.BackColor = System.Drawing.SystemColors.Control;
-            this.button8.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button8.Location = new System.Drawing.Point(488, 124);
-            this.button8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(60, 27);
-            this.button8.TabIndex = 3;
-            this.button8.Text = "参照...";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
+            this.button6.BackColor = System.Drawing.SystemColors.Control;
+            this.button6.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button6.Location = new System.Drawing.Point(488, 58);
+            this.button6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(60, 27);
+            this.button6.TabIndex = 1;
+            this.button6.Text = "参照...";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // txtShiiresaki
+            // 
+            this.txtShiiresaki.Font = new System.Drawing.Font("ＭＳ ゴシック", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtShiiresaki.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.txtShiiresaki.Location = new System.Drawing.Point(64, 25);
+            this.txtShiiresaki.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtShiiresaki.Name = "txtShiiresaki";
+            this.txtShiiresaki.Size = new System.Drawing.Size(419, 21);
+            this.txtShiiresaki.TabIndex = 1;
+            this.txtShiiresaki.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(14, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 12);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "仕入先：";
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.SystemColors.Control;
+            this.button4.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button4.Location = new System.Drawing.Point(488, 23);
+            this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(60, 27);
+            this.button4.TabIndex = 0;
+            this.button4.Text = "参照...";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // frmConfig
             // 

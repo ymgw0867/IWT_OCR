@@ -713,6 +713,7 @@ namespace IWT_OCR.OCR
             //showOcrData(cI);
 
             // リストビューセレクト
+            DataShowStatus = false;
             ListViewSelect(cID[cI]);
         }
 
@@ -748,6 +749,7 @@ namespace IWT_OCR.OCR
             }
 
             // リストビューセレクト
+            DataShowStatus = false;
             ListViewSelect(cID[cI]);
         }
 
@@ -764,6 +766,7 @@ namespace IWT_OCR.OCR
             }
 
             // リストビューセレクト
+            DataShowStatus = false;
             ListViewSelect(cID[cI]);
         }
 
@@ -777,6 +780,7 @@ namespace IWT_OCR.OCR
             //showOcrData(cI);
 
             // リストビューセレクト
+            DataShowStatus = false;
             ListViewSelect(cID[cI]);
         }
 
