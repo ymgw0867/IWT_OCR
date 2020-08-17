@@ -50,12 +50,6 @@
     <Setting Name="納品書パス" Type="System.String" Scope="Application">
       <Value Profile="(Default)">C:\IWT_OCR\NOUHIN\</Value>
     </Setting>
-    <Setting Name="商品マスタ" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">\\192.168.1.51\IWT_SHARE\MST\商品マスタ一覧表.csv</Value>
-    </Setting>
-    <Setting Name="仕入先マスタ" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">\\192.168.1.51\IWT_SHARE\MST\仕入先一覧表.csv</Value>
-    </Setting>
     <Setting Name="HoldTifPath" Type="System.String" Scope="Application">
       <Value Profile="(Default)">c:\IWT_OCR\Hold_Tiff\</Value>
     </Setting>

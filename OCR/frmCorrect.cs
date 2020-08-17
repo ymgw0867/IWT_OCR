@@ -1256,6 +1256,7 @@ namespace IWT_OCR.OCR
                 ShowThumbnail();
 
                 // リストビュー選択
+                DataShowStatus = false;
                 ListViewSelect(cID[cI]);
             }
             else
@@ -1596,7 +1597,8 @@ namespace IWT_OCR.OCR
                     // 画像サムネイル表示
                     ShowThumbnail();
 
-                    // リストビュー選択
+                    // リストビューセレクト
+                    DataShowStatus = false;
                     ListViewSelect(cID[cI]);
                 }
                 else
