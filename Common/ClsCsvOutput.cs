@@ -106,8 +106,9 @@ namespace IWT_OCR.Common
                             sb.Append(dt.Year + dt.Month.ToString("D2") + dt.Day.ToString("D2")).Append(",");   // 仕入日
                             sb.Append(t.KakeGenkin.ToString()).Append(",");             // 仕入区分
                             sb.Append(t.NonyuCode.ToString()).Append(",");              // 仕入先コード
-                            sb.Append(string.Empty).Append(",");                        // 受注番号：なし 2020/07/24
-                            sb.Append(t.BumonCode.ToString()).Append(",");              // 部門コード
+                            sb.Append(string.Empty).Append(",");                        // 受注番号：値なし 2020/07/24
+                            //sb.Append(t.BumonCode.ToString()).Append(",");            // 部門コード  // 2020/08/17 コメント化
+                            sb.Append(string.Empty).Append(",");                        // 部門コード : 値なし 2020/08/17
                             sb.Append(BCode.Replace(",", " ")).Append(",");             // 部品コード
 
                             // 商品マスターより名称・規格を取得
@@ -290,8 +291,9 @@ namespace IWT_OCR.Common
                             sb.Append(t.KakeGenkin.ToString()).Append(",");             // 売上区分
                             sb.Append(t.NonyuCode.ToString()).Append(",");              // 受注先コード
                             sb.Append(t.NonyuCode.ToString()).Append(",");              // 請求先コード
-                            sb.Append(string.Empty).Append(",");                        // 受注番号：なし　2020/07/24
-                            sb.Append(t.BumonCode.ToString()).Append(",");              // 部門コード
+                            sb.Append(string.Empty).Append(",");                        // 受注番号：値なし　2020/07/24
+                            //sb.Append(t.BumonCode.ToString()).Append(",");            // 部門コード  // 2020/08/17 コメント化
+                            sb.Append(string.Empty).Append(",");                        // 部門コード : 値なし 2020/07/17
                             sb.Append(BCode.Replace(",", " ")).Append(",");             // 部品コード
 
                             // 商品マスターより名称・規格を取得

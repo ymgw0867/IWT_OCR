@@ -145,7 +145,7 @@ namespace IWT_OCR.Common
         public static DataTable dtSyohin;       // 商品データテーブル
         public static DataTable dtShiire;       // 仕入先データテーブル
         public static DataTable dtTorihiki;     // 取引先テーブル
-        public static DataTable dtBumon;        // 部門テーブル
+        //public static DataTable dtBumon;        // 部門テーブル     2020/08/17 コメント化
 
         // 伝票区分
         public const string DEN_NOUHINKARI = "1";   // 納品仮伝票

@@ -634,6 +634,7 @@
             this.cmbBumon.Name = "cmbBumon";
             this.cmbBumon.Size = new System.Drawing.Size(261, 24);
             this.cmbBumon.TabIndex = 10;
+            this.cmbBumon.Visible = false;
             this.cmbBumon.SelectedValueChanged += new System.EventHandler(this.cmbBumon_SelectedValueChanged);
             this.cmbBumon.Click += new System.EventHandler(this.cmbBumon_Click);
             // 
@@ -649,6 +650,7 @@
             this.lblBumon.TabIndex = 613;
             this.lblBumon.Text = "部門：";
             this.lblBumon.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblBumon.Visible = false;
             // 
             // comboBox1
             // 

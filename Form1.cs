@@ -82,7 +82,7 @@ namespace IWT_OCR
             // CSVデータをDataSetに読み込む
             global.dtSyohin = readCSV(cf.HinMstPath);           // 商品マスターCSV
             global.dtShiire = readCSV(cf.ShiireMstPath);        // 仕入先マスターCSV
-            global.dtBumon = readCSV(cf.BumonMstPath);          // 部門マスターCSV
+            //global.dtBumon = readCSV(cf.BumonMstPath);          // 部門マスターCSV  2020/08/17 コメント化
             global.dtTorihiki = readCSV(cf.TorihikiMstPath);    // 取引先マスターCSV
         }
 

@@ -190,11 +190,11 @@ namespace IWT_OCR.OCR
             // 現在の表示倍率を初期化
             gl.miMdlZoomRate = 0f;
 
-            // 部門コンボボックス
-            //Utility.ComboBumon.Load(cmbBumon, global.dtBumon);
-            cmbBumon.DataSource = global.dtBumon;
-            cmbBumon.DisplayMember = "部門名";
-            cmbBumon.ValueMember = "部門コード";
+            //// 部門コンボボックス
+            ////Utility.ComboBumon.Load(cmbBumon, global.dtBumon);
+            //cmbBumon.DataSource = global.dtBumon;
+            //cmbBumon.DisplayMember = "部門名";
+            //cmbBumon.ValueMember = "部門コード";
         }
 
         ///-------------------------------------------------------------
@@ -818,7 +818,8 @@ namespace IWT_OCR.OCR
                 Sql += "確認 = " + Convert.ToInt32(checkBox1.Checked) + ",";
                 Sql += "更新年月日 = '" + DateTime.Now.ToString() + "',";
                 Sql += "掛現金区分 = " + (comboBox1.SelectedIndex + 1) + ",";
-                Sql += "部門コード = " + Utility.StrtoInt(Utility.NulltoStr(cmbBumon.SelectedValue).ToString()) + ",";
+                //Sql += "部門コード = " + Utility.StrtoInt(Utility.NulltoStr(cmbBumon.SelectedValue).ToString()) + ",";  // 2020/08/17 コメント化
+                Sql += "部門コード = " + global.flgOff + ",";    // 2020/08/17
                 Sql += "受注先コード = " + global.flgOff + ",";
                 Sql += "請求先コード = " + global.flgOff + " ";
                 Sql += "WHERE ID = '" + cID[iX] + "'";
@@ -928,6 +929,8 @@ namespace IWT_OCR.OCR
             // エラーチェックを実行
             if (getErrData(cI, ocr))
             {
+                System.Diagnostics.Debug.WriteLine("エラーチェック...エラーなし：" + cID[cI].ToString());
+
                 MessageBox.Show("エラーはありませんでした", "エラーチェック", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // データ表示：エラーを消すため表示中データを再表示
@@ -938,6 +941,8 @@ namespace IWT_OCR.OCR
             }
             else
             {
+                System.Diagnostics.Debug.WriteLine("エラーチェック...エラーあり：" + cID[ocr._errHeaderIndex].ToString());
+
                 if (cI != ocr._errHeaderIndex)
                 {
                     // カレントインデックスをエラーありインデックスで更新
@@ -947,6 +952,7 @@ namespace IWT_OCR.OCR
                     //showOcrData(cI);
 
                     // リストビューセレクト
+                    DataShowStatus = false;
                     ListViewSelect(cID[cI]);
                 }
                 else
@@ -1136,7 +1142,7 @@ namespace IWT_OCR.OCR
 
         private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("1...listView1_ItemSelectionChanged");
+            System.Diagnostics.Debug.WriteLine(Environment.NewLine + DateTime.Now.ToString() + Environment.NewLine + "1...listView1_ItemSelectionChanged");
 
             if (DataShowStatus)
             {

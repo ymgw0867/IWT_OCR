@@ -374,12 +374,13 @@ namespace IWT_OCR.Common
                 return false;
             }
 
-            // 部門コード
-            if (Utility.GetBumonFromDataTable(r.BumonCode, global.dtBumon).BumonCode == global.flgOff)
-            {
-                setErrStatus(eBumom, 0, "部門が未選択です");
-                return false;
-            }
+            // 2020/08/17 コメント化
+            //// 部門コード
+            //if (Utility.GetBumonFromDataTable(r.BumonCode, global.dtBumon).BumonCode == global.flgOff)
+            //{
+            //    setErrStatus(eBumom, 0, "部門が未選択です");
+            //    return false;
+            //}
 
             return true;
         }
@@ -477,26 +478,26 @@ namespace IWT_OCR.Common
             }
         }
 
-        ///--------------------------------------------------------------
-        /// <summary>
-        ///     部門コードが登録済みか調べる </summary>
-        /// <param name="tCode">
-        ///     部門コード</param>
-        /// <returns>
-        ///     true:登録済み、false:未登録</returns>
-        ///--------------------------------------------------------------
-        private bool getBumonStatus(int bCode)
-        {
-            bool rtn = false;
+        /////--------------------------------------------------------------
+        ///// <summary>
+        /////     部門コードが登録済みか調べる </summary>
+        ///// <param name="tCode">
+        /////     部門コード</param>
+        ///// <returns>
+        /////     true:登録済み、false:未登録</returns>
+        /////--------------------------------------------------------------
+        //private bool getBumonStatus(int bCode)
+        //{
+        //    bool rtn = false;
 
-            if (Utility.GetBumonFromDataTable(bCode, global.dtBumon).BumonCode  != global.flgOff)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        //    if (Utility.GetBumonFromDataTable(bCode, global.dtBumon).BumonCode  != global.flgOff)
+        //    {
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
     }
 }
