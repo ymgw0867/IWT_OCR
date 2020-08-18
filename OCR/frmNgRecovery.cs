@@ -259,7 +259,7 @@ namespace IWT_OCR.OCR
             }
 
             // 終了メッセージ
-            MessageBox.Show(ngFileCount().ToString() + "件の画像を発注書データとしてリカバリし受信フォルダへ移動しました", "リカバリー処理完了", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(ngFileCount().ToString() + "件の画像を納品書データとしてリカバリし受信フォルダへ移動しました", "リカバリー処理完了", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             // ＮＧ画像リスト再表示
             //GetNgList();
@@ -297,7 +297,14 @@ namespace IWT_OCR.OCR
                 sb.Append("*").Append(",");
                 sb.Append(_ID + ".tif").Append(",");    // 画像ファイル名
                 sb.Append(DenKbn).Append(",");          // 伝票区分
-                sb.Append(",,,,");                      
+                sb.Append(",,,,");
+                
+                // 納品書にリカバリのとき
+                if (DenKbn.ToString() == global.DEN_NOUHIN)
+                {
+                    sb.Append(",,,,,,,,");
+                }
+
                 //sb.Append(Environment.NewLine);
 
                 // ＣＳＶファイル作成

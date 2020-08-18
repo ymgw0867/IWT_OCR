@@ -604,7 +604,7 @@ namespace IWT_OCR.OCR
         ///------------------------------------------------------------------
         private void SetDeviveryData_Nouhin(string[] s)
         {
-            if (s.Length < 16)
+            if (s.Length < 8)
             {
                 return;
             }

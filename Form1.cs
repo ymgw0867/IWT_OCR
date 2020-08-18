@@ -137,7 +137,7 @@ namespace IWT_OCR
                 }
 
                 // ＯＣＲ認識処理
-                doOCr(Properties.Settings.Default.dataPath);
+                sCnt = doOCr(Properties.Settings.Default.dataPath);
 
                 // ＮＧ画像件数取得
                 int ng = System.IO.Directory.GetFiles(Properties.Settings.Default.wrNgPath, "*.tif").Count();
@@ -166,14 +166,19 @@ namespace IWT_OCR
         /// <param name="outPath">
         ///     出力先パス(DATAフォルダ)</param>
         ///------------------------------------------------------------
-        private void doOCr(string outPath)
+        private int doOCr(string outPath)
         {
+            int rVal = 0;
+
             // SCANパスの画像の存在を確認してOCR認識を行う : 2017/10/22
             if (System.IO.Directory.GetFiles(Properties.Settings.Default.scanPath, "*.tif").Count() > 0)
             {
                 // マルチTiff画像をシングルtifに分解する(SCANフォルダ → TRAYフォルダ)
                 if (MultiTif_New(Properties.Settings.Default.scanPath, Properties.Settings.Default.trayPath))
                 {
+                    // 画像件数を取得
+                    rVal = System.IO.Directory.GetFiles(Properties.Settings.Default.trayPath, "*.tif").Count();
+
                     int dNum = 0;   // ファイル名末尾連番
 
                     // 納品仮伝票のOCR処理を実施する
@@ -230,6 +235,8 @@ namespace IWT_OCR
             {
                 MessageBox.Show("認識する納品書等の画像がありません", "対象データ不在", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+
+            return rVal;
         }
 
         ///------------------------------------------------------------------------------

@@ -35,7 +35,7 @@ namespace IWT_OCR.OCR
         {
             if (Utility.StrtoInt(lblNG.Text) != global.flgOff)
             {
-                label2.Text = "ＯＣＲ書式と認識されない画像がありました。ＮＧ画像確認画面で確認してください。";
+                label2.Text = "書式が一致しない画像がありました。" + Environment.NewLine + "ＮＧ画像確認画面で確認してください。";
             }
             else
             {
