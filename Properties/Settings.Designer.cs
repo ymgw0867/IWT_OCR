@@ -25,7 +25,7 @@ namespace IWT_OCR.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\\\\\\192.168.1.51\\IWT_SHARE\\DB\\IWT_SHARE.db3")]
+        [global::System.Configuration.DefaultSettingValueAttribute("c:\\IWT_SHARE\\DB\\IWT_SHARE.db3")]
         public string DB_File {
             get {
                 return ((string)(this["DB_File"]));

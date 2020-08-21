@@ -103,14 +103,34 @@ namespace IWT_OCR.Common
 
                             StringBuilder sb = new StringBuilder();
 
+                            if (iX == 0)
+                            {
+                                sb.Append("H1,");
+                                sb.Append("H2,");
+                                sb.Append("H3,");
+                                sb.Append("H4,");
+                                sb.Append("H5,");
+                                sb.Append("H6,");
+                                sb.Append("H7,");
+                                sb.Append("H8,");
+                                sb.Append("H9,");
+                                sb.Append("H10,");
+                                sb.Append("H11,");
+                                sb.Append("H12,");
+                                sb.Append("H13").Append(Environment.NewLine);
+                            }
+
                             sb.Append(dt.Year + dt.Month.ToString("D2") + dt.Day.ToString("D2")).Append(",");   // 仕入日
                             sb.Append(t.KakeGenkin.ToString()).Append(",");             // 仕入区分
                             sb.Append(t.NonyuCode.ToString()).Append(",");              // 仕入先コード
                             sb.Append(string.Empty).Append(",");                        // 受注番号：値なし 2020/07/24
-                            //sb.Append(t.BumonCode.ToString()).Append(",");            // 部門コード  // 2020/08/17 コメント化
+
+                            // 2020/08/20 間違えてコメント外したがこれで売上原価Pro側を定義したためそのままとする
+                            sb.Append(t.BumonCode.ToString()).Append(",");              // 部門コード  // 2020/08/17 コメント化
+                            
                             sb.Append(string.Empty).Append(",");                        // 部門コード : 値なし 2020/08/17
                             sb.Append(BCode.Replace(",", " ")).Append(",");             // 部品コード
-
+                            
                             // 商品マスターより名称・規格を取得
                             ClsCsvData.ClsCsvSyohin cls = Utility.GetSyohinsFromDataTable(BCode, global.dtSyohin);
                             sb.Append(cls.SyohinName.Replace(",", " ")).Append(",");    // 品名
@@ -121,6 +141,7 @@ namespace IWT_OCR.Common
                             sb.Append(string.Empty).Append(",");                        // 仕入単価
                             sb.Append(string.Empty).Append(",");                        // 備考１
                             sb.Append(string.Empty);                                    // 備考２
+
 
                             Array.Resize(ref ProArray, iX + 1);
                             ProArray[iX] = sb.ToString();
@@ -286,6 +307,24 @@ namespace IWT_OCR.Common
                             }
 
                             StringBuilder sb = new StringBuilder();
+
+                            if (iX == 0)
+                            {
+                                sb.Append("H1,");
+                                sb.Append("H2,");
+                                sb.Append("H3,");
+                                sb.Append("H4,");
+                                sb.Append("H5,");
+                                sb.Append("H6,");
+                                sb.Append("H7,");
+                                sb.Append("H8,");
+                                sb.Append("H9,");
+                                sb.Append("H10,");
+                                sb.Append("H11,");
+                                sb.Append("H12,");
+                                sb.Append("H13,");
+                                sb.Append("H14").Append(Environment.NewLine);
+                            }
 
                             sb.Append(dt.Year + dt.Month.ToString("D2") + dt.Day.ToString("D2")).Append(",");   // 売上日
                             sb.Append(t.KakeGenkin.ToString()).Append(",");             // 売上区分
