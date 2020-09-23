@@ -15,10 +15,15 @@ namespace IWT_OCR
 {
     public partial class Form1 : Form
     {
-        public Form1()
+        public Form1(string _corpPath)
         {
             InitializeComponent();
+
+            // 2020/09/23
+            corpPath = _corpPath;
         }
+
+        string corpPath;    // 2020/09/23
 
         // データベース：Sqlite3
         SQLiteConnection cn = null;
@@ -37,6 +42,8 @@ namespace IWT_OCR
         int ImageSpan = 0;
         // ログ保存月数
         int LogSpan = 0;
+
+        string Errmsg = "";
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -62,7 +69,7 @@ namespace IWT_OCR
         private void Form1_Load(object sender, EventArgs e)
         {
             // キャプションにバージョンを追加
-            this.Text += "   ver " + Application.ProductVersion;
+            this.Text += "  ver " + Application.ProductVersion;
 
             Utility.WindowsMaxSize(this, this.Width, this.Height);
             //Utility.WindowsMinSize(this, this.Width, this.Height);
@@ -79,11 +86,42 @@ namespace IWT_OCR
             ImageSpan = cf.DataSpan;    // 画像保存月数
             LogSpan = cf.LogSpan;       // ログ保存月数
 
-            // CSVデータをDataSetに読み込む
-            global.dtSyohin = readCSV(cf.HinMstPath);           // 商品マスターCSV
-            global.dtShiire = readCSV(cf.ShiireMstPath);        // 仕入先マスターCSV
-            //global.dtBumon = readCSV(cf.BumonMstPath);          // 部門マスターCSV  2020/08/17 コメント化
-            global.dtTorihiki = readCSV(cf.TorihikiMstPath);    // 取引先マスターCSV
+            //// CSVデータをDataSetに読み込む : 2020/09/23 コメント化
+            //global.dtSyohin = readCSV(cf.HinMstPath);           // 商品マスターCSV
+            //global.dtShiire = readCSV(cf.ShiireMstPath);        // 仕入先マスターCSV
+            ////global.dtBumon = readCSV(cf.BumonMstPath);          // 部門マスターCSV  2020/08/17 コメント化
+            //global.dtTorihiki = readCSV(cf.TorihikiMstPath);    // 取引先マスターCSV
+
+            // CSVデータをDataSetに読み込む : 2020/09/23
+            // 商品マスターCSV
+            if (System.IO.File.Exists(corpPath + @"\" + cf.HinMstPath))
+            {
+                global.dtSyohin = readCSV(corpPath + @"\" + cf.HinMstPath);
+            }
+            else
+            {
+                Errmsg += corpPath + @"\" + cf.HinMstPath + Environment.NewLine;
+            }
+
+            // 仕入先マスターCSV
+            if (System.IO.File.Exists(corpPath + @"\" + cf.ShiireMstPath))
+            {
+                global.dtShiire = readCSV(corpPath + @"\" + cf.ShiireMstPath);
+            }
+            else
+            {
+                Errmsg += corpPath + @"\" + cf.ShiireMstPath + Environment.NewLine;
+            }
+
+            // 取引先マスターCSV
+            if (System.IO.File.Exists(corpPath + @"\" + cf.TorihikiMstPath))
+            {
+                global.dtTorihiki = readCSV(corpPath + @"\" + cf.TorihikiMstPath);
+            }
+            else
+            {
+                Errmsg += corpPath + @"\" + cf.TorihikiMstPath + Environment.NewLine;
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -887,6 +925,19 @@ namespace IWT_OCR
                         System.IO.File.Delete(file);
                     }
                 }
+            }
+        }
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            if (Errmsg != "")
+            {
+                MessageBox.Show("以下のファイルを用意してください" + Environment.NewLine + Errmsg, "マスター用ＣＳＶデータが準備できていません", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Close();
+            }
+            else
+            {
+                this.Text += "  【" + System.IO.Path.GetFileName(corpPath) + "】";
             }
         }
     }

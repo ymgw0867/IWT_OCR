@@ -64,6 +64,12 @@
     <Compile Include="Common\ClsCsvData.cs" />
     <Compile Include="Common\ClsCsvOutput.cs" />
     <Compile Include="Common\ClsSqliteMap.cs" />
+    <Compile Include="Common\frmCorpSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\frmCorpSelect.Designer.cs">
+      <DependentUpon>frmCorpSelect.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\frmPrg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +139,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Common\frmCorpSelect.resx">
+      <DependentUpon>frmCorpSelect.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\frmPrg.resx">
       <DependentUpon>frmPrg.cs</DependentUpon>
     </EmbeddedResource>

@@ -20,7 +20,19 @@ namespace IWT_OCR
                 SetProcessDPIAware();
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new Form1());
+                //Application.Run(new Form1());
+
+                // 2020/09/23 会社選択画面
+                Common.frmCorpSelect frm = new Common.frmCorpSelect();
+                Application.Run(frm);
+                string Cpath = Common.Utility.NulltoStr(frm.MyProperty);
+                frm.Dispose();
+
+                // 2020/09/23 会社を指定するとメインメニューを表示
+                if (Cpath != "")
+                {
+                    Application.Run(new Form1(Cpath));
+                }
             }
             else
             {

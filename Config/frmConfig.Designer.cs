@@ -42,18 +42,12 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.txtLogSpan = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.txtBumon = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.button8 = new System.Windows.Forms.Button();
             this.txtHin = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.button7 = new System.Windows.Forms.Button();
             this.txtTorihikisaki = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
             this.txtShiiresaki = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -66,11 +60,11 @@
             this.button2.BackColor = System.Drawing.SystemColors.Control;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button2.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button2.Location = new System.Drawing.Point(372, 456);
+            this.button2.Location = new System.Drawing.Point(372, 420);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(92, 30);
-            this.button2.TabIndex = 3;
+            this.button2.TabIndex = 5;
             this.button2.Text = "登録(&D)";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -80,11 +74,11 @@
             this.button3.BackColor = System.Drawing.SystemColors.Control;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button3.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button3.Location = new System.Drawing.Point(470, 456);
+            this.button3.Location = new System.Drawing.Point(470, 420);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(92, 30);
-            this.button3.TabIndex = 0;
+            this.button3.TabIndex = 6;
             this.button3.Text = "終了(&E)";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
@@ -129,12 +123,12 @@
             // 
             this.groupBox3.Controls.Add(this.txtDataSpan);
             this.groupBox3.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.groupBox3.Location = new System.Drawing.Point(12, 366);
+            this.groupBox3.Location = new System.Drawing.Point(12, 330);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox3.Size = new System.Drawing.Size(272, 64);
-            this.groupBox3.TabIndex = 2;
+            this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "【画像保存月数】";
             // 
@@ -192,12 +186,12 @@
             // 
             this.groupBox5.Controls.Add(this.txtLogSpan);
             this.groupBox5.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.groupBox5.Location = new System.Drawing.Point(290, 366);
+            this.groupBox5.Location = new System.Drawing.Point(290, 330);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox5.Size = new System.Drawing.Size(272, 64);
-            this.groupBox5.TabIndex = 3;
+            this.groupBox5.TabIndex = 4;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "【ログデータ保存月数】";
             // 
@@ -215,60 +209,21 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.txtBumon);
-            this.groupBox4.Controls.Add(this.label4);
-            this.groupBox4.Controls.Add(this.button8);
             this.groupBox4.Controls.Add(this.txtHin);
             this.groupBox4.Controls.Add(this.label3);
-            this.groupBox4.Controls.Add(this.button7);
             this.groupBox4.Controls.Add(this.txtTorihikisaki);
             this.groupBox4.Controls.Add(this.label2);
-            this.groupBox4.Controls.Add(this.button6);
             this.groupBox4.Controls.Add(this.txtShiiresaki);
             this.groupBox4.Controls.Add(this.label1);
-            this.groupBox4.Controls.Add(this.button4);
             this.groupBox4.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.groupBox4.Location = new System.Drawing.Point(9, 183);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox4.Size = new System.Drawing.Size(559, 168);
-            this.groupBox4.TabIndex = 5;
+            this.groupBox4.Size = new System.Drawing.Size(559, 134);
+            this.groupBox4.TabIndex = 2;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "【マスターCSV】";
-            // 
-            // txtBumon
-            // 
-            this.txtBumon.Font = new System.Drawing.Font("ＭＳ ゴシック", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtBumon.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.txtBumon.Location = new System.Drawing.Point(64, 126);
-            this.txtBumon.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtBumon.Name = "txtBumon";
-            this.txtBumon.Size = new System.Drawing.Size(419, 21);
-            this.txtBumon.TabIndex = 10;
-            this.txtBumon.TabStop = false;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(26, 131);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 12);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "部門：";
-            // 
-            // button8
-            // 
-            this.button8.BackColor = System.Drawing.SystemColors.Control;
-            this.button8.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button8.Location = new System.Drawing.Point(488, 124);
-            this.button8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(60, 27);
-            this.button8.TabIndex = 3;
-            this.button8.Text = "参照...";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
+            this.groupBox4.Text = "【マスターCSVデータのファイル名】";
             // 
             // txtHin
             // 
@@ -277,8 +232,8 @@
             this.txtHin.Location = new System.Drawing.Point(64, 93);
             this.txtHin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtHin.Name = "txtHin";
-            this.txtHin.Size = new System.Drawing.Size(419, 21);
-            this.txtHin.TabIndex = 7;
+            this.txtHin.Size = new System.Drawing.Size(485, 21);
+            this.txtHin.TabIndex = 2;
             this.txtHin.TabStop = false;
             // 
             // label3
@@ -290,19 +245,6 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "商品：";
             // 
-            // button7
-            // 
-            this.button7.BackColor = System.Drawing.SystemColors.Control;
-            this.button7.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button7.Location = new System.Drawing.Point(488, 91);
-            this.button7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(60, 27);
-            this.button7.TabIndex = 2;
-            this.button7.Text = "参照...";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
             // txtTorihikisaki
             // 
             this.txtTorihikisaki.Font = new System.Drawing.Font("ＭＳ ゴシック", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
@@ -310,8 +252,8 @@
             this.txtTorihikisaki.Location = new System.Drawing.Point(64, 60);
             this.txtTorihikisaki.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtTorihikisaki.Name = "txtTorihikisaki";
-            this.txtTorihikisaki.Size = new System.Drawing.Size(419, 21);
-            this.txtTorihikisaki.TabIndex = 4;
+            this.txtTorihikisaki.Size = new System.Drawing.Size(485, 21);
+            this.txtTorihikisaki.TabIndex = 1;
             this.txtTorihikisaki.TabStop = false;
             // 
             // label2
@@ -323,19 +265,6 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "取引先：";
             // 
-            // button6
-            // 
-            this.button6.BackColor = System.Drawing.SystemColors.Control;
-            this.button6.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button6.Location = new System.Drawing.Point(488, 58);
-            this.button6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(60, 27);
-            this.button6.TabIndex = 1;
-            this.button6.Text = "参照...";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
             // txtShiiresaki
             // 
             this.txtShiiresaki.Font = new System.Drawing.Font("ＭＳ ゴシック", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
@@ -343,8 +272,8 @@
             this.txtShiiresaki.Location = new System.Drawing.Point(64, 25);
             this.txtShiiresaki.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtShiiresaki.Name = "txtShiiresaki";
-            this.txtShiiresaki.Size = new System.Drawing.Size(419, 21);
-            this.txtShiiresaki.TabIndex = 1;
+            this.txtShiiresaki.Size = new System.Drawing.Size(485, 21);
+            this.txtShiiresaki.TabIndex = 0;
             this.txtShiiresaki.TabStop = false;
             // 
             // label1
@@ -356,24 +285,11 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "仕入先：";
             // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.SystemColors.Control;
-            this.button4.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button4.Location = new System.Drawing.Point(488, 23);
-            this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(60, 27);
-            this.button4.TabIndex = 0;
-            this.button4.Text = "参照...";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
             // frmConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(580, 497);
+            this.ClientSize = new System.Drawing.Size(580, 467);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox1);
@@ -417,17 +333,11 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.TextBox txtLogSpan;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.TextBox txtBumon;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button8;
         private System.Windows.Forms.TextBox txtHin;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button7;
         private System.Windows.Forms.TextBox txtTorihikisaki;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.TextBox txtShiiresaki;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button4;
     }
 }

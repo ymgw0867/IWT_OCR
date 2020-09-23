@@ -184,5 +184,14 @@ namespace IWT_OCR.Properties {
                 return ((string)(this["recPath"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("c:\\IWT_SHARE\\MST\\")]
+        public string mstPath {
+            get {
+                return ((string)(this["mstPath"]));
+            }
+        }
     }
 }

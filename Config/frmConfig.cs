@@ -38,7 +38,7 @@ namespace IWT_OCR.Config
             txtShiiresaki.Text = ClsConf.ShiireMstPath;
             txtTorihikisaki.Text = ClsConf.TorihikiMstPath;
             txtHin.Text = ClsConf.HinMstPath;
-            txtBumon.Text = ClsConf.BumonMstPath;
+            //txtBumon.Text = ClsConf.BumonMstPath;
 
             txtDataSpan.Text = ClsConf.DataSpan.ToString();
             txtLogSpan.Text = ClsConf.LogSpan.ToString();
@@ -115,7 +115,7 @@ namespace IWT_OCR.Config
             ClsConf.ShiireMstPath = txtShiiresaki.Text;
             ClsConf.TorihikiMstPath = txtTorihikisaki.Text;
             ClsConf.HinMstPath = txtHin.Text;
-            ClsConf.BumonMstPath = txtBumon.Text;
+            //ClsConf.BumonMstPath = txtBumon.Text;
             ClsConf.YyMmDd = DateTime.Now.ToString();
 
             context.SubmitChanges();
@@ -165,62 +165,62 @@ namespace IWT_OCR.Config
             // 仕入先マスターパス
             if (txtShiiresaki.Text.Trim() == string.Empty)
             {
-                MessageBox.Show("仕入先マスターパスを入力してください", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("仕入先マスターファイル名を入力してください", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtShiiresaki.Focus();
                 return false;
             }
 
-            if (!System.IO.File.Exists(txtShiiresaki.Text))
-            {
-                MessageBox.Show("指定したファイルは存在しません", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                txtShiiresaki.Focus();
-                return false;
-            }
+            //if (!System.IO.File.Exists(txtShiiresaki.Text))
+            //{
+            //    MessageBox.Show("指定したファイルは存在しません", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //    txtShiiresaki.Focus();
+            //    return false;
+            //}
 
             // 取引先マスターパス
             if (txtTorihikisaki.Text.Trim() == string.Empty)
             {
-                MessageBox.Show("取引先マスターパスを入力してください", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("取引先マスターファイル名を入力してください", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtTorihikisaki.Focus();
                 return false;
             }
 
-            if (!System.IO.File.Exists(txtTorihikisaki.Text))
-            {
-                MessageBox.Show("指定したファイルは存在しません", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                txtTorihikisaki.Focus();
-                return false;
-            }
+            //if (!System.IO.File.Exists(txtTorihikisaki.Text))
+            //{
+            //    MessageBox.Show("指定したファイルは存在しません", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //    txtTorihikisaki.Focus();
+            //    return false;
+            //}
 
             // 商品マスターパス
             if (txtHin.Text.Trim() == string.Empty)
             {
-                MessageBox.Show("商品マスターパスを入力してください", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("商品マスターファイル名をしてください", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtHin.Focus();
                 return false;
             }
 
-            if (!System.IO.File.Exists(txtHin.Text))
-            {
-                MessageBox.Show("指定したファイルは存在しません", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                txtHin.Focus();
-                return false;
-            }
+            //if (!System.IO.File.Exists(txtHin.Text))
+            //{
+            //    MessageBox.Show("指定したファイルは存在しません", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //    txtHin.Focus();
+            //    return false;
+            //}
 
-            // 部門マスターパス
-            if (txtBumon.Text.Trim() == string.Empty)
-            {
-                MessageBox.Show("部門マスターパスを入力してください", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                txtBumon.Focus();
-                return false;
-            }
+            //// 部門マスターパス
+            //if (txtBumon.Text.Trim() == string.Empty)
+            //{
+            //    MessageBox.Show("部門マスターパスを入力してください", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //    txtBumon.Focus();
+            //    return false;
+            //}
 
-            if (!System.IO.File.Exists(txtBumon.Text))
-            {
-                MessageBox.Show("指定したファイルは存在しません", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                txtBumon.Focus();
-                return false;
-            }
+            //if (!System.IO.File.Exists(txtBumon.Text))
+            //{
+            //    MessageBox.Show("指定したファイルは存在しません", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //    txtBumon.Focus();
+            //    return false;
+            //}
 
             // データ保存月数
             if (txtDataSpan.Text.Trim() == string.Empty)
@@ -332,31 +332,5 @@ namespace IWT_OCR.Config
             return fileName;
         }
 
-        private void button6_Click(object sender, EventArgs e)
-        {
-            string fn = OpenFilDialog("取引先マスターCSVファイル");
-            if (fn != string.Empty)
-            {
-                txtTorihikisaki.Text = fn;
-            }
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-            string fn = OpenFilDialog("商品マスターCSVファイル");
-            if (fn != string.Empty)
-            {
-                txtHin.Text = fn;
-            }
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-            string fn = OpenFilDialog("部門マスターCSVファイル");
-            if (fn != string.Empty)
-            {
-                txtBumon.Text = fn;
-            }
-        }
     }
 }
