@@ -151,5 +151,9 @@ namespace IWT_OCR.Common
         public const string DEN_NOUHINKARI = "1";   // 納品仮伝票
         public const string DEN_NOUHIN = "2";       // 納品書
         public const string DEN_GENPIN = "3";       // 現品票
+
+        // 伝票種別 : 2020/09/24
+        public const string DEN_URIAGE = "1";       // 売上
+        public const string DEN_SHIIRE = "2";       // 仕入
     }
 }

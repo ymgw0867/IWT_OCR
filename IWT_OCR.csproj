@@ -131,6 +131,12 @@
     <Compile Include="OCR\frmOCRResult.Designer.cs">
       <DependentUpon>frmOCRResult.cs</DependentUpon>
     </Compile>
+    <Compile Include="OCR\frmOCR_UriageShiire.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCR\frmOCR_UriageShiire.Designer.cs">
+      <DependentUpon>frmOCR_UriageShiire.cs</DependentUpon>
+    </Compile>
     <Compile Include="OCR\frmShiireCode.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +174,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OCR\frmOCRResult.resx">
       <DependentUpon>frmOCRResult.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCR\frmOCR_UriageShiire.resx">
+      <DependentUpon>frmOCR_UriageShiire.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OCR\frmShiireCode.resx">
       <DependentUpon>frmShiireCode.cs</DependentUpon>

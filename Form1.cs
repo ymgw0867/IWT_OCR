@@ -122,6 +122,43 @@ namespace IWT_OCR
             {
                 Errmsg += corpPath + @"\" + cf.TorihikiMstPath + Environment.NewLine;
             }
+
+            // 納品伝票に売上仕入区分フィールド追加：2020/09/24
+            // 保留伝票に売上仕入区分フィールド追加：2020/09/24
+            DbAlterTable();
+        }
+
+        ///-----------------------------------------------------------
+        /// <summary>
+        ///     SQLite3 フィールド追加 </summary>
+        ///-----------------------------------------------------------
+        private void DbAlterTable()
+        {
+            cn = new SQLiteConnection("DataSource=" + Properties.Settings.Default.Local_DB);
+            cn.Open();
+            string sql = "";
+
+            try
+            {
+                // 2020/09/24
+                sql = "ALTER TABLE 納品伝票 ADD COLUMN 売上仕入区分 INTEGER";
+                using (SQLiteCommand com = new SQLiteCommand(sql, cn))
+                {
+                    com.ExecuteNonQuery();
+                }
+
+                sql = "ALTER TABLE 保留伝票 ADD COLUMN 売上仕入区分 INTEGER";
+                using (SQLiteCommand com = new SQLiteCommand(sql, cn))
+                {
+                    com.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                // 何もしない
+            }
+
+            cn.Close();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -164,35 +201,54 @@ namespace IWT_OCR
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int sCnt = System.IO.Directory.GetFiles(Properties.Settings.Default.scanPath, "*.tif").Count();
-
-            // WinReaderHandsのerrorパスの画像の存在を確認する
-            if (sCnt > 0)
+            try
             {
-                if (MessageBox.Show(sCnt + "件の画像のＯＣＲ認識処理を行います。よろしいですか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                int sCnt = System.IO.Directory.GetFiles(Properties.Settings.Default.scanPath, "*.tif").Count();
+
+                // WinReaderHandsのerrorパスの画像の存在を確認する
+                if (sCnt > 0)
                 {
-                    return;
+                    // 2020/09/24 : コメント化
+                    //if (MessageBox.Show(sCnt + "件の画像のＯＣＲ認識処理を行います。よろしいですか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    //{
+                    //    return;
+                    //}
+
+                    // 2020/09/24 : OCR認識実行画面
+                    frmOCR_UriageShiire frm1 = new frmOCR_UriageShiire(sCnt);
+                    frm1.ShowDialog();
+                    int D_Shubetsu = Utility.StrtoInt(Utility.NulltoStr(frm1.MyProperty));
+                    frm1.Dispose();
+
+                    // 2020/09/24 : 伝票種別を渡す
+                    if (D_Shubetsu != global.flgOff)
+                    {
+                        // ＯＣＲ認識処理
+                        sCnt = doOCr(Properties.Settings.Default.dataPath, D_Shubetsu);
+
+                        // ＮＧ画像件数取得
+                        int ng = System.IO.Directory.GetFiles(Properties.Settings.Default.wrNgPath, "*.tif").Count();
+
+                        // アンマッチ画像をNGフォルダへ移動する
+                        getNgImage(Properties.Settings.Default.wrNgPath, Properties.Settings.Default.ngPath);
+
+                        // 終了メッセージ
+                        //MessageBox.Show("ＯＣＲ認識処理が終了しました");
+
+                        // 認識結果
+                        frmOCRResult frm = new frmOCRResult(sCnt, sCnt - ng, ng);
+                        frm.ShowDialog();
+                    }
                 }
-
-                // ＯＣＲ認識処理
-                sCnt = doOCr(Properties.Settings.Default.dataPath);
-
-                // ＮＧ画像件数取得
-                int ng = System.IO.Directory.GetFiles(Properties.Settings.Default.wrNgPath, "*.tif").Count();
-                
-                // アンマッチ画像をNGフォルダへ移動する
-                getNgImage(Properties.Settings.Default.wrNgPath, Properties.Settings.Default.ngPath);
-
-                // 終了メッセージ
-                //MessageBox.Show("ＯＣＲ認識処理が終了しました");
-
-                // 認識結果
-                frmOCRResult frm = new frmOCRResult(sCnt, sCnt - ng, ng);
-                frm.ShowDialog();
+                else
+                {
+                    MessageBox.Show("認識する画像がありません", "対象データ不在", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("認識する画像がありません", "対象データ不在", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(ex.Message);
+                //throw;
             }
         }
 
@@ -203,8 +259,10 @@ namespace IWT_OCR
         ///     WinReaderJob名</param>
         /// <param name="outPath">
         ///     出力先パス(DATAフォルダ)</param>
+        /// <param name="D_Shubetsu">
+        ///     伝票種別</param>
         ///------------------------------------------------------------
-        private int doOCr(string outPath)
+        private int doOCr(string outPath, int D_Shubetsu )
         {
             int rVal = 0;
 
@@ -260,13 +318,13 @@ namespace IWT_OCR
                      * 画像ファイルと共にDATAフォルダへ移動する */
 
                     // 納品仮伝票OCRデータ
-                    LoadCsvDivide(fName, ref dNum, outPath, Properties.Settings.Default.納品仮伝票パス);
+                    LoadCsvDivide(fName, ref dNum, outPath, Properties.Settings.Default.納品仮伝票パス, D_Shubetsu);
 
                     // 納品書OCRデータ
-                    LoadCsvDivide(fName, ref dNum, outPath, Properties.Settings.Default.納品書パス);
+                    LoadCsvDivide(fName, ref dNum, outPath, Properties.Settings.Default.納品書パス, D_Shubetsu);
                     
                     // 現品票OCRデータ
-                    LoadCsvDivide(fName, ref dNum, outPath, Properties.Settings.Default.現品票パス);
+                    LoadCsvDivide(fName, ref dNum, outPath, Properties.Settings.Default.現品票パス, D_Shubetsu);
                 }
             }
             else
@@ -619,7 +677,7 @@ namespace IWT_OCR
         /// <summary>
         ///     伝票ＣＳＶデータを一枚ごとに分割する </summary>
         ///-----------------------------------------------------------------
-        private void LoadCsvDivide(string fnm, ref int dNum, string outPath, string filePath)
+        private void LoadCsvDivide(string fnm, ref int dNum, string outPath, string filePath, int DenShubetsu)
         {
             try
             {
@@ -711,7 +769,8 @@ namespace IWT_OCR
                     }
 
                     // 読み込んだものを追加で格納する
-                    stResult += (stBuffer + Environment.NewLine);
+                    //stResult += (stBuffer + Environment.NewLine);  2020/09/24 コメント化
+                    stResult += (stBuffer + "," + DenShubetsu + Environment.NewLine);   // 2020/09/24 伝票種別（売上・仕入）追加
                 }
 
                 // 後処理
