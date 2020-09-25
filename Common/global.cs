@@ -155,5 +155,6 @@ namespace IWT_OCR.Common
         // 伝票種別 : 2020/09/24
         public const string DEN_URIAGE = "1";       // 売上
         public const string DEN_SHIIRE = "2";       // 仕入
+        public static string[] DEN_ARRAY = { "不明", "売上", "仕入" };
     }
 }

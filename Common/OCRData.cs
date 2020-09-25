@@ -93,6 +93,10 @@ namespace IWT_OCR.Common
         ///     エラー項目 = 受注先コード </summary>
         public int eJyuchuuCode = 11;
 
+        /// <summary>
+        ///     伝票種別 </summary>
+        public int eDenpyo = 36;
+
         #endregion
 
         #region 警告項目
@@ -310,6 +314,13 @@ namespace IWT_OCR.Common
         public Boolean errCheckData(ClsDeviveryNote r)
         {
             int eNum = 0;
+
+            // 売上仕入区分：2020/09/25
+            if (r.UriShiire.ToString() != global.DEN_URIAGE && r.UriShiire.ToString() != global.DEN_SHIIRE)
+            {
+                setErrStatus(eDenpyo, 0, "売上・仕入が不明の伝票です。削除後、再度ＯＣＲ認識を行ってください。");
+                return false;
+            }
 
             // 確認チェック
             if (r.Check == global.flgOff)

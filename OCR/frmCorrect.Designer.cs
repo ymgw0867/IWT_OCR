@@ -72,6 +72,7 @@
             this.lblBumon = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.lblUriShiire = new System.Windows.Forms.Label();
             this.dg1 = new IWT_OCR.DataGridViewEx();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -210,7 +211,7 @@
             this.txtShiireName.Location = new System.Drawing.Point(112, 42);
             this.txtShiireName.Margin = new System.Windows.Forms.Padding(4);
             this.txtShiireName.Name = "txtShiireName";
-            this.txtShiireName.Size = new System.Drawing.Size(684, 26);
+            this.txtShiireName.Size = new System.Drawing.Size(635, 26);
             this.txtShiireName.TabIndex = 4;
             this.txtShiireName.Text = "（株）桐生明治";
             this.txtShiireName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -222,7 +223,7 @@
             this.txtShiireCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtShiireCode.Font = new System.Drawing.Font("ＭＳ ゴシック", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.txtShiireCode.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.txtShiireCode.Location = new System.Drawing.Point(795, 42);
+            this.txtShiireCode.Location = new System.Drawing.Point(745, 42);
             this.txtShiireCode.Margin = new System.Windows.Forms.Padding(4);
             this.txtShiireCode.MaxLength = 9;
             this.txtShiireCode.Name = "txtShiireCode";
@@ -412,7 +413,7 @@
             this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox1.AutoSize = true;
             this.checkBox1.Font = new System.Drawing.Font("ＭＳ ゴシック", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.checkBox1.Location = new System.Drawing.Point(1018, 279);
+            this.checkBox1.Location = new System.Drawing.Point(1019, 288);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(68, 23);
@@ -556,6 +557,7 @@
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.lblUriShiire);
             this.splitContainer2.Panel2.Controls.Add(this.cmbBumon);
             this.splitContainer2.Panel2.Controls.Add(this.lblBumon);
             this.splitContainer2.Panel2.Controls.Add(this.comboBox1);
@@ -630,9 +632,9 @@
             this.cmbBumon.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbBumon.Font = new System.Drawing.Font("ＭＳ ゴシック", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.cmbBumon.FormattingEnabled = true;
-            this.cmbBumon.Location = new System.Drawing.Point(597, 279);
+            this.cmbBumon.Location = new System.Drawing.Point(599, 283);
             this.cmbBumon.Name = "cmbBumon";
-            this.cmbBumon.Size = new System.Drawing.Size(261, 24);
+            this.cmbBumon.Size = new System.Drawing.Size(39, 24);
             this.cmbBumon.TabIndex = 10;
             this.cmbBumon.Visible = false;
             this.cmbBumon.SelectedValueChanged += new System.EventHandler(this.cmbBumon_SelectedValueChanged);
@@ -643,7 +645,7 @@
             this.lblBumon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblBumon.BackColor = System.Drawing.SystemColors.Control;
             this.lblBumon.Font = new System.Drawing.Font("ＭＳ ゴシック", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblBumon.Location = new System.Drawing.Point(535, 277);
+            this.lblBumon.Location = new System.Drawing.Point(537, 281);
             this.lblBumon.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBumon.Name = "lblBumon";
             this.lblBumon.Size = new System.Drawing.Size(65, 24);
@@ -658,7 +660,10 @@
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.Font = new System.Drawing.Font("ＭＳ ゴシック", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(1009, 43);
+            this.comboBox1.Items.AddRange(new object[] {
+            "掛",
+            "現金"});
+            this.comboBox1.Location = new System.Drawing.Point(952, 43);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(77, 24);
             this.comboBox1.TabIndex = 6;
@@ -670,13 +675,28 @@
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.BackColor = System.Drawing.SystemColors.Control;
             this.label7.Font = new System.Drawing.Font("ＭＳ ゴシック", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label7.Location = new System.Drawing.Point(919, 42);
+            this.label7.Location = new System.Drawing.Point(864, 43);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(95, 24);
             this.label7.TabIndex = 611;
             this.label7.Text = "仕入区分：";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblUriShiire
+            // 
+            this.lblUriShiire.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblUriShiire.BackColor = System.Drawing.Color.Lavender;
+            this.lblUriShiire.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblUriShiire.Font = new System.Drawing.Font("ＭＳ ゴシック", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblUriShiire.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblUriShiire.Location = new System.Drawing.Point(1034, 43);
+            this.lblUriShiire.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblUriShiire.Name = "lblUriShiire";
+            this.lblUriShiire.Size = new System.Drawing.Size(52, 24);
+            this.lblUriShiire.TabIndex = 615;
+            this.lblUriShiire.Text = "売上";
+            this.lblUriShiire.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // dg1
             // 
@@ -772,5 +792,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblBumon;
         private System.Windows.Forms.ComboBox cmbBumon;
+        private System.Windows.Forms.Label lblUriShiire;
     }
 }

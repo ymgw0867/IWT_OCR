@@ -62,13 +62,31 @@ namespace IWT_OCR.OCR
 
                 while (dataReader.Read())
                 {
+                    // 売上・仕入による制御：2020/09/25
+                    switch (dataReader["売上仕入区分"].ToString())
+                    {
+                        case global.DEN_URIAGE: // 売上
+                            label7.Text = "売上区分：";
+                            label5.Text = "社名";
+                            break;
+
+                        case global.DEN_SHIIRE: // 仕入
+                            label7.Text = "仕入区分：";
+                            label5.Text = "納入者";
+                            break;
+
+                        default:
+                            label7.Text = "区分：";
+                            label5.Text = "社名";
+                            break;
+                    }
+
                     switch (dataReader["伝票区分"].ToString())
                     {
                         case global.DEN_NOUHINKARI:
 
-                            // 仕入
                             DEN_KBN = global.DEN_NOUHINKARI;
-                            label5.Text = "納入者";
+                            //label5.Text = "納入者";  2020/09/25 コメント化
                             txtShiireCode.Text = dataReader["納入先コード"].ToString();
                             dg1.Columns[0].HeaderCell.Value = "部品コード";
                             dg1.Columns[1].HeaderCell.Value = "部品名称";
@@ -92,11 +110,12 @@ namespace IWT_OCR.OCR
                             // splitContainerの上部から境界線までの距離
                             splitContainer2.SplitterDistance = SpDistance_NouhinKari;
 
+                            // 2020/09/25 コメント化
                             // 仕入区分
-                            label7.Text = "仕入区分：";
-                            comboBox1.Items.Clear();
-                            comboBox1.Items.Add("掛");
-                            comboBox1.Items.Add("現金");
+                            //label7.Text = "仕入区分：";
+                            //comboBox1.Items.Clear();
+                            //comboBox1.Items.Add("掛");
+                            //comboBox1.Items.Add("現金");
 
                             // 伝票ごとの画像サイズ初期値を調整
                             B_WIDTH = 0.32f;
@@ -105,10 +124,9 @@ namespace IWT_OCR.OCR
                             break;
 
                         case global.DEN_NOUHIN: 
-                            
-                            // 売上
+
                             DEN_KBN = global.DEN_NOUHIN;
-                            label5.Text = "社名";
+                            //label5.Text = "社名";   2020/09/25 コメント化
                             txtShiireCode.Text = dataReader["納入先コード"].ToString();
                             //txtSeikyuuCode.Text = dataReader["請求先コード"].ToString();
                             cmbBumon.SelectedValue = dataReader["部門コード"].ToString();
@@ -120,11 +138,12 @@ namespace IWT_OCR.OCR
                             // splitContainerの上部から境界線までの距離
                             splitContainer2.SplitterDistance = SpDistance_Nouhin;
 
+                            // 2020/09/25 コメント化
                             // 売上区分
-                            label7.Text = "売上区分：";
-                            comboBox1.Items.Clear();
-                            comboBox1.Items.Add("掛");
-                            comboBox1.Items.Add("現金");
+                            //label7.Text = "売上区分：";
+                            //comboBox1.Items.Clear();
+                            //comboBox1.Items.Add("掛");
+                            //comboBox1.Items.Add("現金");
 
                             // 伝票ごとの画像サイズ初期値を調整
                             B_WIDTH = 0.225f;
@@ -133,10 +152,9 @@ namespace IWT_OCR.OCR
 
                         case global.DEN_GENPIN:
 
-                            // 仕入
-                            label5.Text = "納入者";
-                            txtShiireCode.Text = dataReader["納入先コード"].ToString();
                             DEN_KBN = global.DEN_GENPIN;
+                            //label5.Text = "納入者";  2020/09/25 コメント化
+                            txtShiireCode.Text = dataReader["納入先コード"].ToString();
                             dg1.Columns[0].HeaderCell.Value = "品目番号";
                             dg1.Columns[1].HeaderCell.Value = "品名";
                             dg1.Columns[2].HeaderCell.Value = "規格";
@@ -146,11 +164,12 @@ namespace IWT_OCR.OCR
                             // splitContainerの上部から境界線までの距離
                             splitContainer2.SplitterDistance = SpDistance_Genpin;
 
-                            // 仕入区分
-                            label7.Text = "仕入区分：";
-                            comboBox1.Items.Clear();
-                            comboBox1.Items.Add("掛");
-                            comboBox1.Items.Add("現金");
+                            // 2020/09/25 コメント化
+                            //// 仕入区分
+                            //label7.Text = "仕入区分：";
+                            //comboBox1.Items.Clear();
+                            //comboBox1.Items.Add("掛");
+                            //comboBox1.Items.Add("現金");
 
                             // 伝票ごとの画像サイズ初期値を調整
                             B_WIDTH = 0.32f;
@@ -279,6 +298,9 @@ namespace IWT_OCR.OCR
                     lblErrMsg.Text = string.Empty;
 
                     label6.Text = "[" + dataReader["ID"].ToString() + "]";
+
+                    // 売上仕入区分：2020/09/25
+                    lblUriShiire.Text = global.DEN_ARRAY[Utility.StrtoInt(dataReader["売上仕入区分"].ToString())];
                 }
 
                 dataReader.Close();

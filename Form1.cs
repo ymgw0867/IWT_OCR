@@ -141,13 +141,13 @@ namespace IWT_OCR
             try
             {
                 // 2020/09/24
-                sql = "ALTER TABLE 納品伝票 ADD COLUMN 売上仕入区分 INTEGER";
+                sql = "ALTER TABLE 納品伝票 ADD COLUMN 売上仕入区分 INTEGER DEFAULT 0";
                 using (SQLiteCommand com = new SQLiteCommand(sql, cn))
                 {
                     com.ExecuteNonQuery();
                 }
 
-                sql = "ALTER TABLE 保留伝票 ADD COLUMN 売上仕入区分 INTEGER";
+                sql = "ALTER TABLE 保留伝票 ADD COLUMN 売上仕入区分 INTEGER DEFAULT 0";
                 using (SQLiteCommand com = new SQLiteCommand(sql, cn))
                 {
                     com.ExecuteNonQuery();

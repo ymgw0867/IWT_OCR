@@ -148,7 +148,10 @@ namespace IWT_OCR.Common
         public int SeikyuuCode { get; set; }
 
         [Column(Name = "部門コード")]
-        public int BumonCode { get; set; }
+        public int BumonCode { get; set; }        
+
+        [Column(Name = "売上仕入区分")]
+        public int UriShiire { get; set; }
     }
 
     // 保留伝票
@@ -226,5 +229,8 @@ namespace IWT_OCR.Common
 
         [Column(Name = "部門コード")]
         public int BumonCode { get; set; }
+
+        [Column(Name = "売上仕入区分")]
+        public int UriShiire { get; set; }
     }
 }

@@ -517,7 +517,8 @@ namespace IWT_OCR.OCR
                 KakeGenkin = global.flgOn,
                 JyuchuCode = global.flgOff,
                 SeikyuuCode = global.flgOff,
-                BumonCode = global.flgOff
+                BumonCode = global.flgOff,
+                UriShiire = Utility.StrtoInt(s[8].Trim())   // 2020/09/25 売上仕入区分
             };
 
             // 納品伝票データを追加登録する
@@ -589,7 +590,8 @@ namespace IWT_OCR.OCR
                 KakeGenkin = global.flgOn,
                 JyuchuCode = global.flgOff,
                 SeikyuuCode = global.flgOff,
-                BumonCode = global.flgOff
+                BumonCode = global.flgOff,
+                UriShiire = Utility.StrtoInt(s[8].Trim())  // 2020/09/25 売上仕入区分
             };
 
             // 納品伝票データを追加登録する
@@ -636,7 +638,8 @@ namespace IWT_OCR.OCR
                 KakeGenkin = global.flgOn,
                 JyuchuCode = global.flgOff,
                 SeikyuuCode = global.flgOff,
-                BumonCode = global.flgOff
+                BumonCode = global.flgOff,
+                UriShiire = Utility.StrtoInt(s[16].Trim())  // 2020/09/25 売上仕入区分
             };
 
             // 納品伝票データを追加登録する
