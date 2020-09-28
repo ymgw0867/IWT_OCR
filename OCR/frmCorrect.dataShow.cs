@@ -66,16 +66,19 @@ namespace IWT_OCR.OCR
                     switch (dataReader["売上仕入区分"].ToString())
                     {
                         case global.DEN_URIAGE: // 売上
+                            URISHIIRE_KBN = global.DEN_URIAGE;  // 2020/09/28
                             label7.Text = "売上区分：";
                             label5.Text = "社名";
                             break;
 
                         case global.DEN_SHIIRE: // 仕入
+                            URISHIIRE_KBN = global.DEN_SHIIRE;  // 2020/09/28
                             label7.Text = "仕入区分：";
                             label5.Text = "納入者";
                             break;
 
                         default:
+                            URISHIIRE_KBN = "";     // 2020/09/28
                             label7.Text = "区分：";
                             label5.Text = "社名";
                             break;
@@ -316,7 +319,6 @@ namespace IWT_OCR.OCR
             DataShowStatus = true;
 
             System.Diagnostics.Debug.WriteLine("6...伝票表示終了：" + cID[iX]);
-
         }
 
         ///---------------------------------------------------------

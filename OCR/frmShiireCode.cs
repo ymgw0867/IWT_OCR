@@ -13,12 +13,12 @@ namespace IWT_OCR.OCR
 {
     public partial class frmShiireCode : Form
     {
-        public frmShiireCode(string sName, string den_Kbn)
+        public frmShiireCode(string sName, string UriShiire_Kbn)
         {
             InitializeComponent();
 
             _sName = sName;
-            _den_Kbn = den_Kbn;
+            _den_Kbn = UriShiire_Kbn;   // 2020/09/28
         }
 
         string _sName = "";
@@ -34,7 +34,8 @@ namespace IWT_OCR.OCR
             dg.Rows.Clear();
 
             // 仕入データ
-            if (_den_Kbn == global.DEN_NOUHINKARI || _den_Kbn == global.DEN_GENPIN)
+            //if (_den_Kbn == global.DEN_NOUHINKARI || _den_Kbn == global.DEN_GENPIN) // 2020/09/28 コメント化
+            if (_den_Kbn == global.DEN_SHIIRE)  // 売上仕入区分で判断：2020/09/28
             {
                 // 仕入先コード逆引き
                 ClsCsvData.ClsCsvShiiresaki[] csvShiiresakis = Utility.GetShiireCodeFromDataTable(Utility.NulltoStr(txtShiireName.Text).ToUpper().Trim(), global.dtShiire);
@@ -59,7 +60,8 @@ namespace IWT_OCR.OCR
             }
 
             // 売上データ
-            if (_den_Kbn == global.DEN_NOUHIN)
+            //if (_den_Kbn == global.DEN_NOUHIN)// 2020/09/28 コメント化
+            if (_den_Kbn == global.DEN_URIAGE)  // 売上仕入区分で判断：2020/09/28
             {
                 // 取引先コード逆引き
                 ClsCsvData.ClsCsvTorihikisaki[] clsCsvTorihikisakis = Utility.GetTorihikisakiCodeFromDataTable(Utility.NulltoStr(txtShiireName.Text).ToUpper().Trim(), global.dtTorihiki);
@@ -157,11 +159,25 @@ namespace IWT_OCR.OCR
                 // 奇数行の色
                 tempDGV.AlternatingRowsDefaultCellStyle.BackColor = Color.Lavender;
 
-                // 各列幅指定
-                tempDGV.Columns.Add(colShiireCode, "仕入先コード");
-                tempDGV.Columns.Add(colShiireName, "仕入先名");
+                // 見出し設定：2020/09/28
+                if (_den_Kbn == global.DEN_URIAGE)
+                {
+                    tempDGV.Columns.Add(colShiireCode, "取引先コード");
+                    tempDGV.Columns.Add(colShiireName, "取引先名");
+                }
+                else if (_den_Kbn == global.DEN_SHIIRE)
+                {
+                    tempDGV.Columns.Add(colShiireCode, "仕入先コード");
+                    tempDGV.Columns.Add(colShiireName, "仕入先名");
+                }
+
+                // 2020/09/28 コメント化
+                //tempDGV.Columns.Add(colShiireCode, "仕入先コード");
+                //tempDGV.Columns.Add(colShiireName, "仕入先名");
+
                 tempDGV.Columns.Add(colRyakusyo, "略称");
 
+                // 各列幅指定
                 tempDGV.Columns[colShiireCode].Width = 120;
                 tempDGV.Columns[colShiireName].Width = 200;
                 tempDGV.Columns[colRyakusyo].Width = 200;
@@ -239,6 +255,17 @@ namespace IWT_OCR.OCR
 
             MyPropertyCode = string.Empty;
             MyPropertyName = string.Empty;
+
+            if (_den_Kbn == global.DEN_URIAGE)
+            {
+                label1.Text = "取引先名：";
+                this.Text = "取引先コード逆引き";
+            }
+            else if (_den_Kbn == global.DEN_SHIIRE)
+            {
+                label1.Text = "仕入先名：";
+                this.Text = "仕入先コード逆引き";
+            }
         }
 
         private void dg_SelectionChanged(object sender, EventArgs e)

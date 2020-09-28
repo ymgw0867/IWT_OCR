@@ -48,6 +48,9 @@ namespace IWT_OCR.OCR
         // 表示中の伝票の伝票区分
         string DEN_KBN = "";
 
+        // 表示中伝票の売上仕入区分：2020/09/28
+        string URISHIIRE_KBN = "";
+
         // 画像サイズ
         float B_WIDTH = 0.30f;
         float B_HEIGHT = 0.30f;
@@ -1799,17 +1802,32 @@ namespace IWT_OCR.OCR
         {
             string sName = Utility.GetWithoutCorp(txtShiireName.Text);
 
-            frmShiireCode frm = new frmShiireCode(sName, DEN_KBN);
+            //frmShiireCode frm = new frmShiireCode(sName, DEN_KBN);    // 2020/09/28 コメント化
+
+            frmShiireCode frm = new frmShiireCode(sName, URISHIIRE_KBN);    // 2020/09/28 引数：売上仕入区分に変更
             frm.ShowDialog();
 
             if (frm.MyPropertyCode != string.Empty)
             {
-                if (DEN_KBN == global.DEN_NOUHINKARI || DEN_KBN == global.DEN_GENPIN)
+                // 2020/09/28 コメント化
+                //if (DEN_KBN == global.DEN_NOUHINKARI || DEN_KBN == global.DEN_GENPIN)
+                //{
+                //    // 仕入先コード編集ログ
+                //    cellName = LOG_SHIIRECODE;
+                //}
+                //else if (DEN_KBN == global.DEN_NOUHIN)
+                //{
+                //    // 受注先コード編集ログ
+                //    cellName = LOG_JYUCHUCODE;
+                //}
+
+                // 売上仕入区分で判断：2020/09/28
+                if (URISHIIRE_KBN == global.DEN_SHIIRE)
                 {
                     // 仕入先コード編集ログ
                     cellName = LOG_SHIIRECODE;
                 }
-                else if (DEN_KBN == global.DEN_NOUHIN)
+                else if (URISHIIRE_KBN == global.DEN_URIAGE)
                 {
                     // 受注先コード編集ログ
                     cellName = LOG_JYUCHUCODE;
