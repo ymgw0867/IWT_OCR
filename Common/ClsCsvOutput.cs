@@ -46,118 +46,128 @@ namespace IWT_OCR.Common
             ///-------------------------------------------------------
             /// <summary>
             ///     売上原価Pro仕入データ作成 </summary>
+            ///     
+            /// 2020/09/28 : 仕入伝票は売上仕入区分で判断
             ///-------------------------------------------------------
             public void CreateShiireCsv()
             {
                 DateTime dt;
                 string[] ProArray = null;
                 int iX = 0;
+                int _DEN_SHIIRE = Utility.StrtoInt(global.DEN_SHIIRE);  // 2020/09/28
 
                 try
                 {
-                    var s = tblDeliv.Where(a => a.DenKbn == Utility.StrtoInt(global.DEN_NOUHINKARI) ||
-                                           a.DenKbn == Utility.StrtoInt(global.DEN_GENPIN));
+                    // 2020/09/28 コメント化
+                    //var s = tblDeliv.Where(a => a.DenKbn == Utility.StrtoInt(global.DEN_NOUHINKARI) ||
+                    //                       a.DenKbn == Utility.StrtoInt(global.DEN_GENPIN));
 
-                    foreach (var t in s)
+                    // 仕入伝票は売上仕入区分で判断：2020/09/28
+                    var s = tblDeliv.Where(a => a.UriShiire == _DEN_SHIIRE);
+
+                    // 仕入伝票があれば実行：2020/09/28
+                    if (s.Count() > 0)
                     {
-                        if (!DateTime.TryParse(t.NounyuDate, out dt))
+                        foreach (var t in s)
                         {
-                            continue;
-                        }
-
-                        for (int i = 0; i < 5; i++)
-                        {
-                            string BCode = "";
-                            string BSuu = "";
-
-                            if (i == 0)
-                            {
-                                BCode = t.BuhinCode_1;
-                                BSuu = t.Suu_1;
-                            }
-                            else if (i == 1)
-                            {
-                                BCode = t.BuhinCode_2;
-                                BSuu = t.Suu_2;
-                            }
-                            else if (i == 2)
-                            {
-                                BCode = t.BuhinCode_3;
-                                BSuu = t.Suu_3;
-                            }
-                            else if (i == 3)
-                            {
-                                BCode = t.BuhinCode_4;
-                                BSuu = t.Suu_4;
-                            }
-                            else if (i == 4)
-                            {
-                                BCode = t.BuhinCode_5;
-                                BSuu = t.Suu_5;
-                            }
-
-                            if (BCode == string.Empty)
+                            if (!DateTime.TryParse(t.NounyuDate, out dt))
                             {
                                 continue;
                             }
 
-                            StringBuilder sb = new StringBuilder();
-
-                            if (iX == 0)
+                            for (int i = 0; i < 5; i++)
                             {
-                                sb.Append("H1,");
-                                sb.Append("H2,");
-                                sb.Append("H3,");
-                                sb.Append("H4,");
-                                sb.Append("H5,");
-                                sb.Append("H6,");
-                                sb.Append("H7,");
-                                sb.Append("H8,");
-                                sb.Append("H9,");
-                                sb.Append("H10,");
-                                sb.Append("H11,");
-                                sb.Append("H12,");
-                                sb.Append("H13").Append(Environment.NewLine);
+                                string BCode = "";
+                                string BSuu = "";
+
+                                if (i == 0)
+                                {
+                                    BCode = t.BuhinCode_1;
+                                    BSuu = t.Suu_1;
+                                }
+                                else if (i == 1)
+                                {
+                                    BCode = t.BuhinCode_2;
+                                    BSuu = t.Suu_2;
+                                }
+                                else if (i == 2)
+                                {
+                                    BCode = t.BuhinCode_3;
+                                    BSuu = t.Suu_3;
+                                }
+                                else if (i == 3)
+                                {
+                                    BCode = t.BuhinCode_4;
+                                    BSuu = t.Suu_4;
+                                }
+                                else if (i == 4)
+                                {
+                                    BCode = t.BuhinCode_5;
+                                    BSuu = t.Suu_5;
+                                }
+
+                                if (BCode == string.Empty)
+                                {
+                                    continue;
+                                }
+
+                                StringBuilder sb = new StringBuilder();
+
+                                if (iX == 0)
+                                {
+                                    sb.Append("H1,");
+                                    sb.Append("H2,");
+                                    sb.Append("H3,");
+                                    sb.Append("H4,");
+                                    sb.Append("H5,");
+                                    sb.Append("H6,");
+                                    sb.Append("H7,");
+                                    sb.Append("H8,");
+                                    sb.Append("H9,");
+                                    sb.Append("H10,");
+                                    sb.Append("H11,");
+                                    sb.Append("H12,");
+                                    sb.Append("H13").Append(Environment.NewLine);
+                                }
+
+                                sb.Append(dt.Year + dt.Month.ToString("D2") + dt.Day.ToString("D2")).Append(",");   // 仕入日
+                                sb.Append(t.KakeGenkin.ToString()).Append(",");             // 仕入区分
+                                sb.Append(t.NonyuCode.ToString()).Append(",");              // 仕入先コード
+                                sb.Append(string.Empty).Append(",");                        // 受注番号：値なし 2020/07/24
+
+                                // 2020/08/20 間違えてコメント外したがこれで売上原価Pro側を定義したためそのままとする
+                                sb.Append(t.BumonCode.ToString()).Append(",");              // 部門コード  // 2020/08/17 コメント化
+
+                                sb.Append(string.Empty).Append(",");                        // 部門コード : 値なし 2020/08/17
+                                sb.Append(BCode.Replace(",", " ")).Append(",");             // 部品コード
+
+                                // 商品マスターより名称・規格を取得
+                                ClsCsvData.ClsCsvSyohin cls = Utility.GetSyohinsFromDataTable(BCode, global.dtSyohin);
+                                sb.Append(cls.SyohinName.Replace(",", " ")).Append(",");    // 品名
+                                sb.Append(cls.Kikaku.Replace(",", " ")).Append(",");        // 規格
+
+                                sb.Append(BSuu).Append(",");                                // 数量
+                                sb.Append(string.Empty).Append(",");                        // 単位
+                                sb.Append(string.Empty).Append(",");                        // 仕入単価
+                                sb.Append(string.Empty).Append(",");                        // 備考１
+                                sb.Append(string.Empty);                                    // 備考２
+
+                                Array.Resize(ref ProArray, iX + 1);
+                                ProArray[iX] = sb.ToString();
+
+                                iX++;
                             }
-
-                            sb.Append(dt.Year + dt.Month.ToString("D2") + dt.Day.ToString("D2")).Append(",");   // 仕入日
-                            sb.Append(t.KakeGenkin.ToString()).Append(",");             // 仕入区分
-                            sb.Append(t.NonyuCode.ToString()).Append(",");              // 仕入先コード
-                            sb.Append(string.Empty).Append(",");                        // 受注番号：値なし 2020/07/24
-
-                            // 2020/08/20 間違えてコメント外したがこれで売上原価Pro側を定義したためそのままとする
-                            sb.Append(t.BumonCode.ToString()).Append(",");              // 部門コード  // 2020/08/17 コメント化
-                            
-                            sb.Append(string.Empty).Append(",");                        // 部門コード : 値なし 2020/08/17
-                            sb.Append(BCode.Replace(",", " ")).Append(",");             // 部品コード
-                            
-                            // 商品マスターより名称・規格を取得
-                            ClsCsvData.ClsCsvSyohin cls = Utility.GetSyohinsFromDataTable(BCode, global.dtSyohin);
-                            sb.Append(cls.SyohinName.Replace(",", " ")).Append(",");    // 品名
-                            sb.Append(cls.Kikaku.Replace(",", " ")).Append(",");        // 規格
-
-                            sb.Append(BSuu).Append(",");                                // 数量
-                            sb.Append(string.Empty).Append(",");                        // 単位
-                            sb.Append(string.Empty).Append(",");                        // 仕入単価
-                            sb.Append(string.Empty).Append(",");                        // 備考１
-                            sb.Append(string.Empty);                                    // 備考２
-
-
-                            Array.Resize(ref ProArray, iX + 1);
-                            ProArray[iX] = sb.ToString();
-
-                            iX++;
                         }
-                    }
 
-                    // 売上原価Proデータ CSVファイル出力
-                    if (ProArray != null)
-                    {
-                        txtFileWrite(CsvOutPath, ProArray, "仕入");
-                    }
+                        // 売上原価Proデータ CSVファイル出力
+                        if (ProArray != null)
+                        {
+                            txtFileWrite(CsvOutPath, ProArray, "仕入");
+                        }
 
-                    // データ削除
-                    DeleteShiireData();
+                        // データ削除
+                        DeleteShiireData(_DEN_SHIIRE);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -172,16 +182,24 @@ namespace IWT_OCR.Common
             ///------------------------------------------------------
             /// <summary>
             ///     仕入データ、画像削除 </summary>
+            /// <param name="DenShiire">
+            ///     売上仕入区分</param>
             ///------------------------------------------------------
-            private void DeleteShiireData()
+            private void DeleteShiireData(int DenShiire)
             {
-                int DenNouhinkari = Utility.StrtoInt(global.DEN_NOUHINKARI);
-                int DenGenpin = Utility.StrtoInt(global.DEN_GENPIN);
+                // 2020/09/28 コメント化
+                //int DenNouhinkari = Utility.StrtoInt(global.DEN_NOUHINKARI);
+                //int DenGenpin = Utility.StrtoInt(global.DEN_GENPIN);
+                
                 string DirName = "";
 
                 try
                 {
-                    var s = tblDeliv.Where(a => a.DenKbn == DenNouhinkari || a.DenKbn == DenGenpin);
+                    // 2020/09/28 コメント化
+                    //var s = tblDeliv.Where(a => a.DenKbn == DenNouhinkari || a.DenKbn == DenGenpin);
+
+                    // 仕入伝票は売上仕入区分で判断：2020/09/28
+                    var s = tblDeliv.Where(a => a.UriShiire == DenShiire);
 
                     // 画像保存
                     foreach (var t in s)
@@ -202,7 +220,8 @@ namespace IWT_OCR.Common
                     }
 
                     // 納品伝票データ削除
-                    string sql = "DELETE FROM 納品伝票 WHERE 伝票区分 = " + DenNouhinkari + " OR 伝票区分 = " + DenGenpin;
+                    //string sql = "DELETE FROM 納品伝票 WHERE 伝票区分 = " + DenNouhinkari + " OR 伝票区分 = " + DenGenpin;    // 2020/09/28 コメント化
+                    string sql = "DELETE FROM 納品伝票 WHERE 売上仕入区分 = " + DenShiire;    // 仕入伝票は売上仕入区分で判断：2020/09/28
 
                     using (SQLiteCommand com = new SQLiteCommand(sql, cn2))
                     {
@@ -252,115 +271,126 @@ namespace IWT_OCR.Common
             ///-------------------------------------------------------
             /// <summary>
             ///     売上原価売上データ作成 </summary>
+            ///     
+            /// 2020/09/28 : 売上伝票は売上仕入区分で判断
             ///-------------------------------------------------------
             public void CreateUriageCsv()
             {
                 DateTime dt;
                 string[] ProArray = null;
                 int iX = 0;
+                int _DEN_URIAGE = Utility.StrtoInt(global.DEN_URIAGE);  // 2020/09/28
 
                 try
                 {
-                    var s = tblDeliv.Where(a => a.DenKbn == Utility.StrtoInt(global.DEN_NOUHIN));
+                    // 2020/09/28 コメント化
+                    //var s = tblDeliv.Where(a => a.DenKbn == Utility.StrtoInt(global.DEN_NOUHIN));
 
-                    foreach (var t in s)
+                    // 売上伝票は売上仕入区分で判断：2020/09/28
+                    var s = tblDeliv.Where(a => a.UriShiire == _DEN_URIAGE);
+
+                    // 売上伝票があったら実行：2020/09/28
+                    if (s.Count() > 0)
                     {
-                        if (!DateTime.TryParse(t.NounyuDate, out dt))
+                        foreach (var t in s)
                         {
-                            continue;
-                        }
-
-                        for (int i = 0; i < 5; i++)
-                        {
-                            string BCode = "";
-                            string BSuu = "";
-
-                            if (i == 0)
-                            {
-                                BCode = t.BuhinCode_1;
-                                BSuu = t.Suu_1;
-                            }
-                            else if (i == 1)
-                            {
-                                BCode = t.BuhinCode_2;
-                                BSuu = t.Suu_2;
-                            }
-                            else if (i == 2)
-                            {
-                                BCode = t.BuhinCode_3;
-                                BSuu = t.Suu_3;
-                            }
-                            else if (i == 3)
-                            {
-                                BCode = t.BuhinCode_4;
-                                BSuu = t.Suu_4;
-                            }
-                            else if (i == 4)
-                            {
-                                BCode = t.BuhinCode_5;
-                                BSuu = t.Suu_5;
-                            }
-
-                            if (BCode == string.Empty)
+                            if (!DateTime.TryParse(t.NounyuDate, out dt))
                             {
                                 continue;
                             }
 
-                            StringBuilder sb = new StringBuilder();
-
-                            if (iX == 0)
+                            for (int i = 0; i < 5; i++)
                             {
-                                sb.Append("H1,");
-                                sb.Append("H2,");
-                                sb.Append("H3,");
-                                sb.Append("H4,");
-                                sb.Append("H5,");
-                                sb.Append("H6,");
-                                sb.Append("H7,");
-                                sb.Append("H8,");
-                                sb.Append("H9,");
-                                sb.Append("H10,");
-                                sb.Append("H11,");
-                                sb.Append("H12,");
-                                sb.Append("H13,");
-                                sb.Append("H14").Append(Environment.NewLine);
+                                string BCode = "";
+                                string BSuu = "";
+
+                                if (i == 0)
+                                {
+                                    BCode = t.BuhinCode_1;
+                                    BSuu = t.Suu_1;
+                                }
+                                else if (i == 1)
+                                {
+                                    BCode = t.BuhinCode_2;
+                                    BSuu = t.Suu_2;
+                                }
+                                else if (i == 2)
+                                {
+                                    BCode = t.BuhinCode_3;
+                                    BSuu = t.Suu_3;
+                                }
+                                else if (i == 3)
+                                {
+                                    BCode = t.BuhinCode_4;
+                                    BSuu = t.Suu_4;
+                                }
+                                else if (i == 4)
+                                {
+                                    BCode = t.BuhinCode_5;
+                                    BSuu = t.Suu_5;
+                                }
+
+                                if (BCode == string.Empty)
+                                {
+                                    continue;
+                                }
+
+                                StringBuilder sb = new StringBuilder();
+
+                                if (iX == 0)
+                                {
+                                    sb.Append("H1,");
+                                    sb.Append("H2,");
+                                    sb.Append("H3,");
+                                    sb.Append("H4,");
+                                    sb.Append("H5,");
+                                    sb.Append("H6,");
+                                    sb.Append("H7,");
+                                    sb.Append("H8,");
+                                    sb.Append("H9,");
+                                    sb.Append("H10,");
+                                    sb.Append("H11,");
+                                    sb.Append("H12,");
+                                    sb.Append("H13,");
+                                    sb.Append("H14").Append(Environment.NewLine);
+                                }
+
+                                sb.Append(dt.Year + dt.Month.ToString("D2") + dt.Day.ToString("D2")).Append(",");   // 売上日
+                                sb.Append(t.KakeGenkin.ToString()).Append(",");             // 売上区分
+                                sb.Append(t.NonyuCode.ToString()).Append(",");              // 受注先コード
+                                sb.Append(t.NonyuCode.ToString()).Append(",");              // 請求先コード
+                                sb.Append(string.Empty).Append(",");                        // 受注番号：値なし　2020/07/24
+                                                                                            //sb.Append(t.BumonCode.ToString()).Append(",");            // 部門コード  // 2020/08/17 コメント化
+                                sb.Append(string.Empty).Append(",");                        // 部門コード : 値なし 2020/07/17
+                                sb.Append(BCode.Replace(",", " ")).Append(",");             // 部品コード
+
+                                // 商品マスターより名称・規格を取得
+                                ClsCsvData.ClsCsvSyohin cls = Utility.GetSyohinsFromDataTable(BCode, global.dtSyohin);
+                                sb.Append(cls.SyohinName.Replace(",", " ")).Append(",");    // 品名
+                                sb.Append(cls.Kikaku.Replace(",", " ")).Append(",");        // 規格
+
+                                sb.Append(BSuu).Append(",");              // 数量
+                                sb.Append(string.Empty).Append(",");      // 単位
+                                sb.Append(string.Empty).Append(",");      // 単価
+                                sb.Append(string.Empty).Append(",");      // 備考１
+                                sb.Append(string.Empty);                  // 備考２
+
+                                Array.Resize(ref ProArray, iX + 1);
+                                ProArray[iX] = sb.ToString();
+
+                                iX++;
                             }
-
-                            sb.Append(dt.Year + dt.Month.ToString("D2") + dt.Day.ToString("D2")).Append(",");   // 売上日
-                            sb.Append(t.KakeGenkin.ToString()).Append(",");             // 売上区分
-                            sb.Append(t.NonyuCode.ToString()).Append(",");              // 受注先コード
-                            sb.Append(t.NonyuCode.ToString()).Append(",");              // 請求先コード
-                            sb.Append(string.Empty).Append(",");                        // 受注番号：値なし　2020/07/24
-                            //sb.Append(t.BumonCode.ToString()).Append(",");            // 部門コード  // 2020/08/17 コメント化
-                            sb.Append(string.Empty).Append(",");                        // 部門コード : 値なし 2020/07/17
-                            sb.Append(BCode.Replace(",", " ")).Append(",");             // 部品コード
-
-                            // 商品マスターより名称・規格を取得
-                            ClsCsvData.ClsCsvSyohin cls = Utility.GetSyohinsFromDataTable(BCode, global.dtSyohin);
-                            sb.Append(cls.SyohinName.Replace(",", " ")).Append(",");    // 品名
-                            sb.Append(cls.Kikaku.Replace(",", " ")).Append(",");        // 規格
-
-                            sb.Append(BSuu).Append(",");              // 数量
-                            sb.Append(string.Empty).Append(",");      // 単位
-                            sb.Append(string.Empty).Append(",");      // 単価
-                            sb.Append(string.Empty).Append(",");      // 備考１
-                            sb.Append(string.Empty);                  // 備考２
-
-                            Array.Resize(ref ProArray, iX + 1);
-                            ProArray[iX] = sb.ToString();
-
-                            iX++;
                         }
-                    }
 
-                    // 売上原価Proデータ CSVファイル出力
-                    if (ProArray != null)
-                    {
-                        txtFileWrite(CsvOutPath, ProArray, "売上");
-                    }
+                        // 売上原価Proデータ CSVファイル出力
+                        if (ProArray != null)
+                        {
+                            txtFileWrite(CsvOutPath, ProArray, "売上");
+                        }
 
-                    // データ削除
-                    DeleteUriageData();
+                        // データ削除
+                        DeleteUriageData(_DEN_URIAGE);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -375,15 +405,23 @@ namespace IWT_OCR.Common
             ///------------------------------------------------------
             /// <summary>
             ///     売上データ、画像削除 </summary>
+            /// <param name="DenUriage">
+            ///     売上仕入区分</param>
+            ///     
+            ///     2020/09/28：売上伝票は売上仕入区分で判断
             ///------------------------------------------------------
-            private void DeleteUriageData()
+            private void DeleteUriageData(int DenUriage)
             {
-                int DenNouhin = Utility.StrtoInt(global.DEN_NOUHIN);
+                //int DenNouhin = Utility.StrtoInt(global.DEN_NOUHIN);  // 2020/09/28 コメント化
                 string DirName = "";
 
                 try
                 {
-                    var s = tblDeliv.Where(a => a.DenKbn == DenNouhin);
+                    // 2020/09/28 コメント化
+                    //var s = tblDeliv.Where(a => a.DenKbn == DenNouhin);
+
+                    // 売上伝票は売上仕入区分で判断：2020/09/28
+                    var s = tblDeliv.Where(a => a.UriShiire == DenUriage);
 
                     // 画像保存
                     foreach (var t in s)
@@ -404,7 +442,8 @@ namespace IWT_OCR.Common
                     }
 
                     // 売上データ削除
-                    string sql = "DELETE FROM 納品伝票 WHERE 伝票区分 = " + DenNouhin;
+                    //string sql = "DELETE FROM 納品伝票 WHERE 伝票区分 = " + DenNouhin;     // 2020/09/28 コメント化
+                    string sql = "DELETE FROM 納品伝票 WHERE 売上仕入区分 = " + DenUriage;    //　売上伝票は売上仕入区分で判断：2020/09/28
 
                     using (SQLiteCommand com = new SQLiteCommand(sql, cn2))
                     {
@@ -494,6 +533,5 @@ namespace IWT_OCR.Common
 
             }
         }
-
     }
 }
