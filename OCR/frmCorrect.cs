@@ -493,6 +493,18 @@ namespace IWT_OCR.OCR
                 return;
             }
 
+            string stCode = "";
+
+            // 取引先名、仕入先名よりコードを逆引きする：2020/09/29
+            if (s[8].Trim() == global.DEN_SHIIRE)
+            {
+                stCode = GetShiireTorihikiCode(s[3].Trim(), global.dtShiire, s[8].Trim());
+            }
+            else if (s[8].Trim() == global.DEN_URIAGE)
+            {
+                stCode = GetShiireTorihikiCode(s[3].Trim(), global.dtTorihiki, s[8].Trim());
+            }
+
             ClsDeviveryNote clsDevivery = null;
 
             clsDevivery = new ClsDeviveryNote()
@@ -512,7 +524,8 @@ namespace IWT_OCR.OCR
                 BuhinCode_5 = string.Empty,
                 Suu_5 = string.Empty,
                 NonyuName = s[3].Trim(),
-                NonyuCode = global.flgOff,
+                //NonyuCode = global.flgOff,            // 2020/09/29 コメント化
+                NonyuCode = Utility.StrtoInt(stCode),   // 2020/09/29
                 Bikou = s[7].Trim(),
                 memo = string.Empty,
                 Check = global.flgOff,
@@ -568,6 +581,18 @@ namespace IWT_OCR.OCR
                 iX++;
             }
 
+            string stCode = "";
+
+            // 取引先名、仕入先名よりコードを逆引きする：2020/09/29
+            if (s[8].Trim() == global.DEN_SHIIRE)
+            {
+                stCode = GetShiireTorihikiCode(s[3].Trim(), global.dtShiire, s[8].Trim());
+            }
+            else if (s[8].Trim() == global.DEN_URIAGE)
+            {
+                stCode = GetShiireTorihikiCode(s[3].Trim(), global.dtTorihiki, s[8].Trim());
+            }
+
             clsDevivery = new ClsDeviveryNote()
             {
                 ID = Utility.GetStringSubMax(s[1].Trim(), 17),
@@ -585,7 +610,8 @@ namespace IWT_OCR.OCR
                 BuhinCode_5 = BuhinArray[4].Trim(),
                 Suu_5 = SuuArray[4].Trim(),
                 NonyuName = s[3].Trim(),
-                NonyuCode = global.flgOff,
+                //NonyuCode = global.flgOff,            // 2020/09/29 コメント化
+                NonyuCode = Utility.StrtoInt(stCode),   // 2020/09/29
                 Bikou = s[7].Trim(),
                 memo = string.Empty,
                 Check = global.flgOff,
@@ -614,6 +640,18 @@ namespace IWT_OCR.OCR
                 return;
             }
 
+            string stCode = "";
+
+            // 取引先名、仕入先名よりコードを逆引きする：2020/09/29
+            if (s[16].Trim() == global.DEN_SHIIRE)
+            {
+                stCode = GetShiireTorihikiCode(s[3].Trim(), global.dtShiire, s[16].Trim());
+            }
+            else if (s[16].Trim() == global.DEN_URIAGE)
+            {
+                stCode = GetShiireTorihikiCode(s[3].Trim(), global.dtTorihiki, s[16].Trim());
+            }
+
             ClsDeviveryNote clsDevivery = null;
 
             clsDevivery = new ClsDeviveryNote()
@@ -633,7 +671,8 @@ namespace IWT_OCR.OCR
                 BuhinCode_5 = s[13].Trim(),
                 Suu_5 = s[14].Trim(),
                 NonyuName = s[3].Trim(),
-                NonyuCode = global.flgOff,
+                //NonyuCode = global.flgOff,            // 2020/09/29 コメント化
+                NonyuCode = Utility.StrtoInt(stCode),   // 2020/09/28
                 Bikou = s[15].Trim(),
                 memo = string.Empty,
                 Check = global.flgOff,
@@ -1908,6 +1947,71 @@ namespace IWT_OCR.OCR
                 // 値を保持
                 cellBeforeValue = Utility.NulltoStr(cmbBumon.Text).ToString().Replace("'", "''");
             }
+        }
+
+        ///-----------------------------------------------------------------------------------------------------
+        /// <summary>
+        ///     該当するデータが単一のとき仕入先名、取引先名より仕入先コードまたは取引先コードを取得する </summary>
+        /// <param name="tName">
+        ///     仕入先名または取引先名</param>
+        /// <param name="data">
+        ///     仕入先または取引先のデータセット</param>
+        /// <param name="UriShiire">
+        ///     売上（取引先）：1, 仕入先：2</param>
+        /// <returns>
+        ///     仕入先コードまたは取引先コード</returns>
+        ///-----------------------------------------------------------------------------------------------------
+        private string GetShiireTorihikiCode(string tName, System.Data.DataTable data, string UriShiire)
+        {
+            string val;
+
+            switch (UriShiire)
+            {
+                case global.DEN_SHIIRE:
+
+                    ClsCsvData.ClsCsvShiiresaki[] csvShiiresakis = Utility.GetShiireCodeFromDataTable(tName, data);
+
+                    if (csvShiiresakis == null)
+                    {
+                        val =string.Empty;
+                    }
+                    else if (csvShiiresakis.Length == 1)
+                    {
+                        val = csvShiiresakis[0].ShiireCode.ToString();
+                    }
+                    else
+                    {
+                        val = string.Empty;
+                    }
+
+                    break;
+
+                case global.DEN_URIAGE:
+
+                    ClsCsvData.ClsCsvTorihikisaki [] csvTorihikisakis = Utility.GetTorihikisakiCodeFromDataTable(tName, data);
+
+                    if (csvTorihikisakis == null)
+                    {
+                        val = string.Empty;
+                    }
+                    else if (csvTorihikisakis.Length == 1)
+                    {
+                        val = csvTorihikisakis[0].TorihikisakiCode.ToString();
+                    }
+                    else
+                    {
+                        val = string.Empty;
+                    }
+
+                    break;
+
+                default:
+
+                    val = string.Empty;
+                    break;
+            }
+
+            return val;
         }
     }
 }
