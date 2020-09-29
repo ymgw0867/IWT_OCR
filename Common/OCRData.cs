@@ -337,8 +337,31 @@ namespace IWT_OCR.Common
                 return false;
             }
 
-            // 納品仮伝票・現品票：仕入
-            if (r.DenKbn.ToString() == global.DEN_NOUHINKARI || r.DenKbn.ToString() == global.DEN_GENPIN)
+            // 2020/09/29 コメント化
+            //// 納品仮伝票・現品票：仕入
+            //if (r.DenKbn.ToString() == global.DEN_NOUHINKARI || r.DenKbn.ToString() == global.DEN_GENPIN)
+            //{
+            //    // 仕入先コード
+            //    if (!getShiireStatus(r.NonyuCode.ToString()))
+            //    {
+            //        setErrStatus(eShiireNo, 0, "不明な仕入先コードです");
+            //        return false;
+            //    }
+            //}
+
+            //// 納品書：売上
+            //if (r.DenKbn == Utility.StrtoInt(global.DEN_NOUHIN))
+            //{
+            //    // 取引先コード
+            //    if (!getTorihikisakiStatus(r.NonyuCode.ToString()))
+            //    {
+            //        setErrStatus(eShiireNo, 0, "不明な取引先コードです");
+            //        return false;
+            //    }
+            //}
+
+            // 仕入先コード：売上仕入区分で売上仕入を判断　2020/09/29
+            if (r.UriShiire.ToString() == global.DEN_SHIIRE)
             {
                 // 仕入先コード
                 if (!getShiireStatus(r.NonyuCode.ToString()))
@@ -348,8 +371,8 @@ namespace IWT_OCR.Common
                 }
             }
 
-            // 納品書：売上
-            if (r.DenKbn == Utility.StrtoInt(global.DEN_NOUHIN))
+            // 取引先コード：売上仕入区分で売上仕入を判断　2020/09/29
+            if (r.UriShiire.ToString() == global.DEN_URIAGE)
             {
                 // 取引先コード
                 if (!getTorihikisakiStatus(r.NonyuCode.ToString()))
